@@ -1,0 +1,8 @@
+[objects]
+src/hello_world.obj
+data.obj
+hdr.obj
+/home/puke7/pvsneslib/pvsneslib/lib/LoROM_SlowROM/crt0_snes.obj
+/home/puke7/pvsneslib/pvsneslib/lib/LoROM_SlowROM/libc.obj
+/home/puke7/pvsneslib/pvsneslib/lib/LoROM_SlowROM/libm.obj
+/home/puke7/pvsneslib/pvsneslib/lib/LoROM_SlowROM/libtcc.obj
