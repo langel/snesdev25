@@ -11,6 +11,12 @@
 extern char tilfont, palfont;
 unsigned short pad0;
 
+unsigned short cam_x, cam_y;
+
+extern char tileset, tilesetend, tilepal;
+extern char map00;
+extern char tileset_def, tileset_att;
+
 //---------------------------------------------------------------------------------
 int main(void)
 {
@@ -33,12 +39,31 @@ int main(void)
     consoleDrawText(10, 10, "Hello World !");
     consoleDrawText(6, 14, "WELCOME TO PVSNESLIB");
     consoleDrawText(5, 18, "dicks   Dicks   DICKS");
+    
+	 // Init layer with tiles and init also map length 0x6800 is mandatory for map engine
+    bgSetGfxPtr(1, 0x3000);
+    bgSetMapPtr(1, 0x6000, SC_32x32);
+    bgInitTileSet(0, &tileset, &tilepal, 0, (&tilesetend - &tileset), 16 * 2, BG_16COLORS, 0x2000);
+    bgSetMapPtr(0, 0x6800, SC_64x32);
+    
+	 // Load map in memory and update it regarding current location of the sprite
+    mapLoad((u8 *)&map00, (u8 *)&tileset_def, (u8 *)&tileset_att);
+
+	cam_x = 0;
+	cam_y = 0;
 
     // Wait for nothing :P
     setScreenOn();
+    // Wait VBL 'and update sprites too ;-) )
+    WaitForVBlank();
 
     while (1)
     {
+        // Update the map regarding the camera
+		  mapUpdateCamera(cam_x, cam_y);
+        mapUpdate();
+        consoleDrawText(4, 2, " CAM_X=%04x  CAM_Y=%04x ", (u16)cam_x, (u16)cam_y);
+
         // Get current #0 pad
         pad0 = padsCurrent(0);
 
@@ -58,15 +83,19 @@ int main(void)
             consoleDrawText(9, 5, "START PRESSED");
             break;
         case KEY_RIGHT:
+		  	cam_x++;
             consoleDrawText(9, 5, "RIGHT PRESSED");
             break;
         case KEY_LEFT:
+		  	cam_x--;
             consoleDrawText(9, 5, "LEFT PRESSED");
             break;
         case KEY_DOWN:
+		  	cam_y++;
             consoleDrawText(9, 5, "DOWN PRESSED");
             break;
         case KEY_UP:
+		  	cam_y--;
             consoleDrawText(9, 5, "UP PRESSED");
             break;
         case KEY_R:
@@ -86,6 +115,8 @@ int main(void)
             break;
         }
         consoleDrawText(14, 22, "COUNTER=%04u", (u16)snes_vblank_count);
+        
+		  mapVblank();
         WaitForVBlank();
     }
     return 0;
