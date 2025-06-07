@@ -23,16 +23,11 @@ int main(void) {
 	consoleSetTextMapPtr(0x6800);
 	consoleSetTextGfxPtr(0x3000);
 	consoleSetTextOffset(0x0100);
-	consoleInitText(0, 16 * 2, &tilfont, &palfont);
+	consoleInitText(1, 16*2, &tilfont, &palfont);
 
 	// Init background
-	bgSetGfxPtr(0, 0x2000);
-	bgSetMapPtr(0, 0x6800, SC_32x32);
-
-	// Now Put in 16 color mode and disable Bgs except current
-	setMode(BG_MODE1, 0);
-	bgSetDisable(1);
-	bgSetDisable(2);
+	//bgSetGfxPtr(0, 0x2000);
+	//bgSetMapPtr(0, 0x6800, SC_32x32);
 
 	// Draw a wonderful text :P
 	consoleDrawText(10, 10, "Hello World !");
@@ -48,6 +43,11 @@ int main(void) {
 	// Load map in memory and update it regarding current location of the sprite
 	mapLoad((u8 *)&map00, (u8 *)&tileset_def, (u8 *)&tileset_att);
 
+	// Now Put in 16 color mode and disable Bgs except current
+	setMode(BG_MODE1, 0);
+	//bgSetDisable(1);
+	bgSetDisable(2);
+
 	cam_x = 0;
 	cam_y = 0;
 
@@ -58,8 +58,8 @@ int main(void) {
 
 	while (1) {
 		// Update the map regarding the camera
-		mapUpdateCamera(cam_x, cam_y);
 		mapUpdate();
+		mapUpdateCamera(cam_x, cam_y);
 		consoleDrawText(4, 2, " CAM_X=%04x  CAM_Y=%04x ", (u16)cam_x, (u16)cam_y);
 
 		// Get current #0 pad
@@ -113,8 +113,8 @@ int main(void) {
 		}
 		consoleDrawText(14, 22, "COUNTER=%04u", (u16)snes_vblank_count);
 
-		mapVblank();
 		WaitForVBlank();
+		mapVblank();
 	}
 	return 0;
 }

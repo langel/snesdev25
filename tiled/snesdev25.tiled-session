@@ -3,19 +3,27 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "map00.tmj",
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "//wsl.localhost/Debian/home/puke7/pvsneslib/snes-examples/games/likemario/map_1_1.tmx": {
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 703.6666666666666,
-                "y": 42
+                "x": 1199.6666666666665,
+                "y": 120
             }
         },
         "//wsl.localhost/Debian/home/puke7/pvsneslib/snes-examples/games/likemario/map_1_1.tmx#tiles": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "dungeon.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -23,8 +31,8 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 214.33333333333331,
-                "y": 144
+                "x": 192.33333333333331,
+                "y": 160
             }
         },
         "map00.tmj#dungeon": {
@@ -45,17 +53,25 @@
             "scaleInDock": 4
         }
     },
+    "last.exportedFilePath": "//wsl.localhost/Debian/home/puke7/gits/snesdev25/tiled",
     "last.imagePath": "//wsl.localhost/Debian/home/puke7/gits/snesdev25/tiled",
     "map.height": 256,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "json",
     "map.tileHeight": 8,
     "map.tileWidth": 8,
     "map.width": 256,
     "openFiles": [
+        "map00.tmj",
+        "dungeon.tsx",
+        "//wsl.localhost/Debian/home/puke7/pvsneslib/snes-examples/games/likemario/map_1_1.tmx"
     ],
     "project": "snesdev25.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "//wsl.localhost/Debian/home/puke7/pvsneslib/snes-examples/games/likemario/map_1_1.tmx",
+        "dungeon.tsx",
+        "map00.tmj"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
